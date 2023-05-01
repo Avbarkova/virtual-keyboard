@@ -59,7 +59,6 @@ function main() {
             language = 'en'
           }
           textareaIntro = textarea.value;
-          console.log (textareaIntro);
           localStorage.setItem('language', language);
           document.body.innerHTML = '<script type="module" src="./script/index.js" defer></script>';
           main();
