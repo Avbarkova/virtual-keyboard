@@ -18,6 +18,7 @@ function main() {
   if (textareaIntro!=='') {
     textarea.value=textareaIntro;
   }
+  textarea.focus();
   let buttons = document.querySelectorAll('.key_btn');
   // клик по виртуальной клавиатуре выделяет кнопку
   for (let button of buttons) {
