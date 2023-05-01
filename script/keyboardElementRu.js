@@ -216,7 +216,7 @@ const keyboardElementRu = [
   },
   {
     symbol: 'Shift',
-    class: 'extra shift_left',
+    class: 'extra shift shift_left',
     shift: null,
     code: 'ShiftLeft',
   },
@@ -283,7 +283,7 @@ const keyboardElementRu = [
   },
   {
     symbol: 'Shift',
-    class: 'extra shift_right',
+    class: 'extra shift shift_right',
     shift: null,
     code: 'ShiftRight',
   },

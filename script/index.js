@@ -1,7 +1,8 @@
 import onloadKeybord from '../script/onloadKeybord.js';
 import keyboardElementEn from '../script/keyboardElementEn.js';
 import keyboardElementRu from '../script/keyboardElementRu.js';
-let extra = ['Backspace', 'Tab', 'Delete', 'CapsLock', 'Enter', 'ShiftLeft', 'ShiftRight', 'ControlLeft', 'ControlRight', 'MetaLeft', 'AltLeft', 'AltRight', 'ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
+let extra = ['Backspace', 'Tab', 'Delete', 'CapsLock', 'Enter', 'ShiftLeft', 'ShiftRight', 'ControlLeft', 'ControlRight', 'MetaLeft', 'AltLeft', 'AltRight'];
+let normal = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Backslash', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'Space', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
 // загрузка DOM-элементов
 let language;
 if (localStorage.getItem('language')) {
@@ -23,18 +24,28 @@ function main() {
   // клик по виртуальной клавиатуре выделяет кнопку
   for (let button of buttons) {
     button.addEventListener('mouseup', (e) => {
+      if (e.target.id === 'Enter') {
+        textarea.value += '\n';
+      }
+      if (e.target.id === 'Tab') {
+        textarea.value += '\t';
+      } 
+      if (e.target.id === 'Backspace') {
+        textareaIntro=textarea.value;
+        textarea.value = textareaIntro.slice(0, textareaIntro.length-1);
+      } 
       if (language === 'en') {
         for (let elem of keyboardElementEn) { //английский символ отражается в поле ввода при клике мыши
           if (e.target.id === elem.code) {
-            if (!extra.includes(e.target.id)) {
+            if (normal.includes(e.target.id)) {
               textarea.value += elem.symbol;
-            }
+            } 
           }
         }
       } else {
         for (let elem of keyboardElementRu) { //русский символ отражается в поле ввода при клике мыши
           if (e.target.id === elem.code) {
-            if (!extra.includes(e.target.id)) {
+            if (normal.includes(e.target.id)) {
               textarea.value += elem.symbol;
             }
           }
@@ -73,10 +84,20 @@ function main() {
         button.classList.remove('active');
       }
     }
+    if (e.code === 'Enter') {
+      textarea.value += '\n';
+    }
+    if (e.code === 'Tab') {
+      textarea.value += '\t';
+    } 
+    if (e.code === 'Backspace') {
+      textareaIntro=textarea.value;
+      textarea.value = textareaIntro.slice(0, textareaIntro.length-1);
+    } 
     if (language === 'en') {
       for (let elem of keyboardElementEn) { //английский символ отражается в поле ввода при клике мыши
         if (e.code === elem.code) {
-          if (!extra.includes(e.code)) {
+          if (normal.includes(e.code)) {
             textarea.value += elem.symbol;
           }
         }
@@ -84,7 +105,7 @@ function main() {
     } else {
       for (let elem of keyboardElementRu) { //русский символ отражается в поле ввода при клике мыши
         if (e.code === elem.code) {
-          if (!extra.includes(e.code)) {
+          if (normal.includes(e.code)) {
             textarea.value += elem.symbol;
           }
         }
