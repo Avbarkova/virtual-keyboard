@@ -342,12 +342,4 @@ const keyboardElementRu = [
     code: 'ControlRight',
   },
 ]
-
-// const input = document.querySelector("input");
-// let keyboard = [];
-// input.addEventListener("keydown", logKey);
-// function logKey(e) {
-//   keyboard.push(e.code);
-//   console.log (keyboard);
-// }
 export default keyboardElementRu;
